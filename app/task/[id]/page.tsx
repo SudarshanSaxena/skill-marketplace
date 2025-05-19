@@ -1,5 +1,4 @@
 'use client';
-import { ECategory } from "@/models/category";
 import { ETaskStatus, ITask } from "@/models/task";
 import { useEffect, useState } from "react";
 import { fetchTaskDetails } from "./action";

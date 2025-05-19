@@ -1,6 +1,4 @@
-import { createClient } from '@/lib/supabase/server';
 import { IProvider } from '@/models/provider';
-import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   // Parse query parameters from the request URL
@@ -15,8 +13,8 @@ export async function POST(req: Request) {
     return new Response(JSON.stringify({ message: 'Received provider' }), {
       status: 200,
     });
-  } catch (error: any) {
-    return new Response(JSON.stringify({ error: error.message }), {
+  } catch (error) {
+    return new Response(JSON.stringify({ error }), {
       status: 400,
       headers: { 'Content-Type': 'application/json' },
     });
