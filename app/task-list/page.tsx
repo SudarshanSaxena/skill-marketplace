@@ -1,9 +1,9 @@
 import React from 'react'
-import { fetchAllTasks } from './action';
 import TaskTable from './components/TaskListTable';
+import { getAllTasks } from '@/lib/taskService';
 
 export default async function TaskList() {
-  const tasks = await fetchAllTasks();
+  const tasks = await getAllTasks();
   console.log(tasks);
   return (
     <main className="p-4">
