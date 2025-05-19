@@ -2,7 +2,7 @@ import { createClient } from '@/lib/supabase/server';
 import { ITask } from '@/models/task';
 import { NextResponse } from 'next/server';
 
-export async function GET(req: Request) {
+export async function GET() {
   const supabase = await createClient();
   const { data, error } = await supabase.from('tasks').select('*').range(0,9);
   if (error) throw new Error(error.message);
