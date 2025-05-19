@@ -1,7 +1,7 @@
 'use client';
 import { ETaskStatus, ITask } from "@/models/task";
 import { useEffect, useState } from "react";
-import { fetchTaskDetails } from "./action";
+import { fetchTaskDetails, updateTask } from "./action";
 import { formatDate } from "@/lib/utils/date-utils";
 import React from "react";
 
@@ -28,12 +28,22 @@ export default function TaskDetailPage({ params }: { params: Promise<{ id: strin
     setIsEditing((prev) => ({ ...prev, [stringKey]: !prev[stringKey] }));
   };
 
-  const saveChanges = () => {
-    // send editState to backend (PATCH or PUT)
-    setTask({ ...task, ...editState });
+  // const saveChanges = () => {
+  //   // send editState to backend (PATCH or PUT)
+  //   setTask({ ...task, ...editState });
+  //   setEditState({});
+  //   setIsEditing({});
+  // };
+
+  const saveChanges = async () => {
+    if (!task) return;
+    const updatedTask = { ...task, ...editState };
+    await updateTask(updatedTask.id,updatedTask);
+    setTask(updatedTask);
     setEditState({});
     setIsEditing({});
   };
+  
 
   const hasChanges = Object.keys(editState).length > 0;
 
