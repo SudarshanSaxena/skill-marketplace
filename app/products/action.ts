@@ -4,8 +4,10 @@ import { createClient } from "@/lib/supabase/server";
 
 
 export async function fetchProducts() {
-  const supabase = await createClient();
-  const { data, error } = await supabase.from('products').select('*');
-  if (error) throw new Error(error.message);
+  const response = await fetch("http://localhost:3000/api/products")
+  if (!response.ok) {
+    throw new Error("Failed to fetch products");
+  }
+  const data = await response.json();
   return data;
 }
