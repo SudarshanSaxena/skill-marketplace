@@ -3,11 +3,6 @@ import { ITask } from '@/models/task';
 import { NextResponse } from 'next/server';
 
 export async function GET(req: Request) {
-  // Parse query parameters from the request URL
-  const { searchParams } = new URL(req.url);
-  // Example: Get a specific param, e.g., category
-  const category = searchParams.get('category');
-
   const supabase = await createClient();
   const { data, error } = await supabase.from('tasks').select('*').range(0,9);
   if (error) throw new Error(error.message);
