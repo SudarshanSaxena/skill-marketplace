@@ -9,8 +9,8 @@ export interface IProvider{
   companyName: string;
   taxNumber: string;
   representativeName: string;
+  userType: EUserType;
 }
-
 
 export interface IAddress{
   id: string;
@@ -24,4 +24,8 @@ export interface IAddress{
 export enum EProviderType{
   INDIVIDUAL = "individual",
   COMPANY = "company",
+}
+export enum EUserType{
+  PROVIDER = "provider",
+  USER = "user",
 }

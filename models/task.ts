@@ -11,6 +11,8 @@ export interface ITask{
   rateCurrency: string;
   progress: number;
   status: ETaskStatus;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export enum ETaskStatus{
